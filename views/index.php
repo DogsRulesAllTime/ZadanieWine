@@ -98,12 +98,13 @@
     </div>
     </div>
     <div class=" col-md-6">
-        <form  method="post" action="">
+        <form enctype="multipart/form-data" action=""   method="post" >
 
             <div class="form-group">
                 <input type="text"name="name" placeholder="Name"><br>
                 <input type="text" name="surname" placeholder="Surname"><br>
-                <input type="file" name="photo"><br>
+                <!-- <input type="hidden" name="MAX_FILE_SIZE" value="3000000000000" /> -->
+                <input name="myfile" type="file" ><br>
 
             </div>
             <div class="form-group">
