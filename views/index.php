@@ -31,6 +31,8 @@
     </script>
 </head>
 <body>
+<div class="row">
+    <div class=" col-md-6">
 <form  method="post" action="">
     <div class="form-group">
   <label for="selectpicker">Select list:</label>
@@ -46,10 +48,10 @@
   <option value="8" >август</option>
   <option value="9" >сентябрь</option>
   <option value="10" >октябрь</option>
-  
+
 </select>
 
-  
+
 </div>
 <div class="form-group">
 <input type="submit" name="btn" value="применить">
@@ -93,6 +95,29 @@
     	</div>
     </div> -->
  
+    </div>
+    </div>
+    <div class=" col-md-6">
+        <form  method="post" action="">
+
+            <div class="form-group">
+                <input type="text"name="name" placeholder="Name"><br>
+                <input type="text" name="surname" placeholder="Surname"><br>
+                <input type="file" name="photo"><br>
+
+            </div>
+            <div class="form-group">
+                <label for="selectprof">Выбор проффессии:</label>
+                <select class="selectprof" name="selectprof">
+                    <option value="" ></option>
+                    <option value="1" >бухгалтер</option>
+                    <option value="2" >курьер</option>
+                    <option value="3" >менеджер</option>
+                </select>
+            </div>
+            <input type="submit" name="addBtn" value="применить">
+        </form>
+    </div>
     </div>
    
 </body>
