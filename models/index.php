@@ -22,6 +22,17 @@ class Index
             echo "Зарплата за $d месяц";
         }
 
+//Добавляем премию
+        if (isset($_POST['btn']) ):
+
+    if (!empty($_POST['premMoney']) && isset($_POST['premMoney']) ):
+        
+            $result = $db->query("UPDATE `payment` SET `money` =`money`+{$_POST['premMoney']} WHERE `payment`.`month` = '$d-01' ");
+        // echo "премия добавлена к месяцу"."$d-01";
+        
+    endif;
+    endif;
+//делаем выборку
         $result = $db->query("SELECT * FROM workers
 INNER JOIN payment on  workers.id_user = payment.user 
 
@@ -37,9 +48,20 @@ WHERE payment.month = '$d-01'");
             $List[$i]['surname'] = $row['surname'];
             $List[$i]['money'] = $row['money'];
             $List[$i]['photo'] = $row['photo'];
+            $List[$i]['usa'] = 0;
+            // Валюта
+            if (!empty($_POST['usa']) && isset($_POST['usa'])) {
+            $List[$i]['usa'] = ($row['money']/$_POST['usa'])*1000;
+        }
+            
             $i++;
         }
+            
+        
         return $List;
+
+    
+        
     }
 
     public static function userAdd()
@@ -58,11 +80,11 @@ WHERE payment.month = '$d-01'");
             else:
             //     $query = "INSERT INTO `workers` (`id_user`, `name`, `surname`, `prof`, `photo`) VALUES (NULL, '{$_POST['name']}', '{$_POST['surname']}', '{$_POST['selectprof']}', '3')";
             // echo $query; die();
-                print_r($_FILES['myfile']);
-            print_r ($_FILES['myfile']['error']);
-            if (is_uploaded_file($_FILES['myfile']['tmp_name'])) {
-             echo "Файл ". $_FILES['myfile']['name'] ." успешно загружен.\n";
-         }
+                // print_r($_FILES['myfile']);
+         //    print_r ($_FILES['myfile']['error']);
+         //    if (is_uploaded_file($_FILES['myfile']['tmp_name'])) {
+         //     echo "Файл ". $_FILES['myfile']['name'] ." успешно загружен.\n";
+         // }
 // die();
               if (isset($_FILES['myfile'])) {
                   // echo "da";
@@ -83,11 +105,33 @@ WHERE payment.month = '$d-01'");
                     
                 $result = $db->query("INSERT INTO `workers` (`id_user`, `name`, `surname`, `prof`, `photo`) VALUES (NULL, '{$_POST['name']}', '{$_POST['surname']}', '{$_POST['selectprof']}', '{$uploadfile}')");
 
-                echo 'qq';
+                // echo 'qq';
             endif;
             endif;
             endif;
             endif;
             }
 }
-}
+
+//  public static function userMonthPrem(){
+//     $db = Db::getConnection();
+//     $d = date('Y-m');
+
+//         if (isset($_POST['selectpicker']) and !empty($_POST['selectpicker'])) {
+
+//             $selectpicker = $_POST['selectpicker'];
+//             $d = "2017-$selectpicker";}
+// $prem ="UPDATE `payment` SET `money` =`money`+{$_POST['premMoney']} WHERE `payment`.`month` = '$d-01' ";
+// echo $prem;
+
+//     if (isset($_POST['premAdd']) ):
+//     if (!empty($_POST['premMoney']) && isset($_POST['premMoney']) && is_int($_POST['premMoney'])):
+//             $result = $db->query("UPDATE `payment` SET `money` =`money`+{$_POST['premMoney']} WHERE `payment`.`month` = '$d-01' ");
+//         echo "премия добавлена к месяцу"."$d-01";
+        
+//     endif;
+//     endif;
+
+    
+// }
+ }
